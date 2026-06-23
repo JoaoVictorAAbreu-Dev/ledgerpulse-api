@@ -2,25 +2,35 @@
 
 API backend para controle financeiro pessoal com foco em recorrencias, alertas e previsibilidade de saldo.
 
-## Problema que resolve
-- centraliza receitas e despesas
-- evidencia contas recorrentes
-- ajuda a prever saldo projetado
-- cria base para alertas financeiros
+## Objetivo
+Consolidar receitas, despesas e lancamentos recorrentes para permitir leitura rapida de saude financeira e risco de caixa.
+
+## Problema atendido
+- despesas e receitas ficam espalhadas
+- recorrencias sao esquecidas
+- saldo projetado nao e acompanhado com consistencia
+- alertas financeiros surgem tarde demais
+
+## Escopo funcional
+- autenticacao com JWT
+- cadastro e listagem de transacoes
+- snapshot de saldo
+- contagem de recorrencias
+- score de alerta financeiro
 
 ## Stack
 - Java 21
 - Spring Boot
 - Spring Security com JWT
 - Spring Data JPA
-- PostgreSQL
-- H2 para testes
+- PostgreSQL em producao
+- H2 em testes
 
-## Funcionalidades
-- login com usuario demo
-- cadastro e consulta de transacoes
-- snapshot de saldo e alertas
-- seguranca com JWT
+## Regras de negocio
+- receitas aumentam o saldo projetado
+- despesas reduzem o saldo projetado
+- recorrencias elevam o risco de alerta
+- o dashboard sintetiza volume, saldo e recorrencia
 
 ## Credenciais de demo
 - email: `demo@ledgerpulse.dev`
@@ -33,17 +43,24 @@ API backend para controle financeiro pessoal com foco em recorrencias, alertas e
 - `JWT_SECRET`
 - `JWT_EXPIRATION_MINUTES`
 
-## Execucao local
-1. subir PostgreSQL com `docker compose up -d`
-2. configurar variaveis de ambiente
-3. executar `mvn spring-boot:run`
+## Como executar
+1. suba o PostgreSQL com `docker compose up -d`
+2. configure as variaveis de ambiente
+3. execute `mvn spring-boot:run`
 
-## Testes
+## Como testar
 ```bash
 mvn test
 ```
 
-## Estrutura principal
+## Endpoints principais
+- `GET /api/health`
+- `POST /api/auth/login`
+- `GET /api/transactions`
+- `POST /api/transactions`
+- `GET /api/dashboard`
+
+## Estrutura do projeto
 ```text
 src/main/java/com/jv/financesignal
   auth/
@@ -55,19 +72,16 @@ src/main/java/com/jv/financesignal
   user/
 ```
 
-## Endpoints
-- `GET /api/health`
-- `POST /api/auth/login`
-- `GET /api/transactions`
-- `POST /api/transactions`
-- `GET /api/dashboard`
-
-## Observacoes de arquitetura
-- controllers sem regra de negocio
-- validacao com Bean Validation
+## Decisoes tecnicas
+- controllers finos
+- regras concentradas em services
+- DTOs para entrada e saida
 - tratamento centralizado de erros
-- usuarios demo persistidos em banco
+- persistencia relacional com UUID
 - rotas protegidas por JWT
 
-## Valor para LinkedIn
-Projeto forte para demonstrar backend financeiro com persistencia, autenticacao, testes e previsibilidade de saldo.
+## Evolucao prevista
+- parcelas e vencimentos
+- categorias customizadas
+- metas de economia
+- alertas de limite por categoria
