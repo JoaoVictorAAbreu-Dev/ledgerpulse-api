@@ -14,6 +14,14 @@ API backend para resolver a dor de controle financeiro do dia a dia com alertas,
 ## LinkedIn
 Projeto voltado para um problema real e facilmente reconhecivel por recrutadores.
 
+## Ambiente
+Use `.env.example` como base para configurar PostgreSQL local.
+
+## Execucao local
+1. subir PostgreSQL com `docker compose up -d`
+2. carregar as variaveis de ambiente
+3. iniciar a aplicacao com Maven Wrapper
+
 ## Estrutura
 ```text
 src/main/java/com/jv/financesignal
