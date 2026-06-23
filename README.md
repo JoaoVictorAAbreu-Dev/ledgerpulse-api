@@ -1,4 +1,4 @@
-# Finance Signal API
+# LedgerPulse API
 
 API backend para resolver a dor de controle financeiro do dia a dia com alertas, recorrencias e previsibilidade.
 
@@ -10,3 +10,4 @@ API backend para resolver a dor de controle financeiro do dia a dia com alertas,
 
 ## LinkedIn
 Projeto voltado para um problema real e facilmente reconhecivel por recrutadores.
+
