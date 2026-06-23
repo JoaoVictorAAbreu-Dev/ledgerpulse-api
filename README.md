@@ -1,45 +1,73 @@
 # LedgerPulse API
 
-API backend para resolver a dor de controle financeiro do dia a dia com alertas, recorrencias e previsibilidade.
+API backend para controle financeiro pessoal com foco em recorrencias, alertas e previsibilidade de saldo.
 
-## Proposta
-- Alertas de contas e assinaturas
-- Visao de despesas recorrentes
-- Classificacao de gastos por categoria
-- Base para previsao e analise de risco financeiro
-- Lancamentos de receita e despesa
-- Snapshot de saldo projetado
-- Indicadores de recorrencia e alerta
+## Problema que resolve
+- centraliza receitas e despesas
+- evidencia contas recorrentes
+- ajuda a prever saldo projetado
+- cria base para alertas financeiros
 
-## LinkedIn
-Projeto voltado para um problema real e facilmente reconhecivel por recrutadores.
+## Stack
+- Java 21
+- Spring Boot
+- Spring Security com JWT
+- Spring Data JPA
+- PostgreSQL
+- H2 para testes
 
-## Ambiente
-Use `.env.example` como base para configurar PostgreSQL local.
+## Funcionalidades
+- login com usuario demo
+- cadastro e consulta de transacoes
+- snapshot de saldo e alertas
+- seguranca com JWT
+
+## Credenciais de demo
+- email: `demo@ledgerpulse.dev`
+- senha: `ledger123`
+
+## Variaveis de ambiente
+- `DATABASE_URL`
+- `DATABASE_USERNAME`
+- `DATABASE_PASSWORD`
+- `JWT_SECRET`
+- `JWT_EXPIRATION_MINUTES`
 
 ## Execucao local
 1. subir PostgreSQL com `docker compose up -d`
-2. carregar as variaveis de ambiente
-3. iniciar a aplicacao com Maven Wrapper
+2. configurar variaveis de ambiente
+3. executar `mvn spring-boot:run`
 
-## Estrutura
+## Testes
+```bash
+mvn test
+```
+
+## Estrutura principal
 ```text
 src/main/java/com/jv/financesignal
+  auth/
   config/
   dashboard/
   exception/
   finance/
+  security/
+  user/
 ```
 
 ## Endpoints
 - `GET /api/health`
+- `POST /api/auth/login`
 - `GET /api/transactions`
 - `POST /api/transactions`
 - `GET /api/dashboard`
 
-## Regras
-- receitas aumentam o saldo projetado
-- despesas reduzem o saldo projetado
-- recorrencias entram no indicador de risco
-- o dashboard sintetiza receita, despesa e alerta
+## Observacoes de arquitetura
+- controllers sem regra de negocio
+- validacao com Bean Validation
+- tratamento centralizado de erros
+- usuarios demo persistidos em banco
+- rotas protegidas por JWT
 
+## Valor para LinkedIn
+Projeto forte para demonstrar backend financeiro com persistencia, autenticacao, testes e previsibilidade de saldo.

@@ -2,13 +2,23 @@ spring:
   application:
     name: ledgerpulse-api
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:h2:mem:ledgerpulse;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
-    driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.h2.Driver}
-    username: ${SPRING_DATASOURCE_USERNAME:sa}
-    password: ${SPRING_DATASOURCE_PASSWORD:}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/ledgerpulse}
+    driver-class-name: org.postgresql.Driver
+    username: ${DATABASE_USERNAME:ledgerpulse}
+    password: ${DATABASE_PASSWORD:ledgerpulse}
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
         format_sql: true
+  sql:
+    init:
+      mode: never
+app:
+  security:
+    jwt:
+      secret: ${JWT_SECRET:ledgerpulse-dev-secret-key-please-change-me}
+      expiration-minutes: ${JWT_EXPIRATION_MINUTES:120}
+server:
+  port: 8082
